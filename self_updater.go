@@ -23,8 +23,9 @@ var SelfUpdateCheckDoneChan = make(chan bool, 1)
 
 func init() {
 	//goland:noinspection GoBoolExpressions
-	if buildinfo.InstallerTag == buildinfo.VersionUnknown {
-		Log.Debug("Disabling self updater as this is not a release build")
+	if buildinfo.InstallerTag == buildinfo.VersionUnknown || InstallerReleaseUrl == "" {
+		Log.Debug("Disabling self updater")
+		SelfUpdateCheckDoneChan <- true
 		return
 	}
 
