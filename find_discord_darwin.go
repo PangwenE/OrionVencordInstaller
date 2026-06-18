@@ -62,6 +62,10 @@ func FindDiscords() []any {
 	return discords
 }
 
+func ParseDiscordNew(p, branch string, _ bool) *DiscordInstall {
+	return ParseDiscord(p, branch)
+}
+
 func PreparePatch(di *DiscordInstall) {}
 
 func FixOwnership(_ string) error {
